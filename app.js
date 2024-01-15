@@ -1,7 +1,37 @@
-console.log("Hello, World")
-for (let i = 0; i < 30; i++) {
-  console.log(getComputerChoice())
+const computerSelection = getComputerChoice();
+const playerSelection = getPlayerChoice();
+console.log ("computer: " + computerSelection)
+console.log("player: " + playerSelection)
+// console.log(playRound(playerSelection, computerSelection));
+
+function getComputerChoice() {
+  let choice = Math.floor(Math.random() * 3 + 1);
+  if (choice === 1) {
+    return "rock";
+  }  else if (choice === 2) {
+    return "paper";
+  }  else if (choice === 3) {
+    return "scissors";
+  } else {
+    console.log("Error: Random number outside 1-3");
+  }
 }
+
+function getPlayerChoice () {
+  do {
+    let userAnswer = prompt("Choose rock, paper, or scissors: ");
+    let answer = userAnswer.toLowerCase();
+    if ((answer === "rock") || (answer === "paper") || (answer === "scissors")) {
+      return answer;
+    }
+  } while (true);
+}
+
+// function playRound(playerSelectionText, computerSelection) {
+
+
+// }
+
 
 /*
 # create function getComputerChoice
@@ -9,20 +39,6 @@ for (let i = 0; i < 30; i++) {
     If 1 - "Rock", If 2-"Paper", If 3 - Scissors
     Store computerChoice
     Return computerChoice */
-
-function getComputerChoice() {
-  let choice = Math.floor(Math.random() * 3 + 1)
-  if (choice === 1) {
-    return "Rock";
-  }  else if (choice === 2) {
-    return "Paper"
-  }  else if (choice === 3) {
-    return "Scissors"
-  } else {
-    console.log("Error: Random number outside 1-3");
-  }
-}
-
 /*
 # create function getPlayChoice
     Prompt user to type choice
@@ -40,8 +56,10 @@ function getComputerChoice() {
               if playerSelection = rock AND computerselection = paper, answer = computer wins
               if playerSelection = rock AND computerselection = scissors, answer = player wins
               (same thing with other combinations)
-  Returns string that declares the winner.
+  Returns string that declares the winner. */
 
+
+/*
   # create function game() that keeps score and does a best of five
       create variables for playerScore and computerScore.
       playRound
