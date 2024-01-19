@@ -21,6 +21,8 @@ function getPlayerChoice () {
     const answer = userAnswer.toLowerCase();
     if ((answer === "rock") || (answer === "paper") || (answer === "scissors")) {
       return answer;
+    } else {
+      console.log("You must enter rock, paper or scissors.")
     }
   } while (true);
 }
