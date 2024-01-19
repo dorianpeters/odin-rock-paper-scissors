@@ -2,10 +2,10 @@ const computerSelection = getComputerChoice();
 const playerSelection = getPlayerChoice();
 console.log ("computer: " + computerSelection)
 console.log("player: " + playerSelection)
-// console.log(playRound(playerSelection, computerSelection));
+console.log(playRound(playerSelection, computerSelection));
 
 function getComputerChoice() {
-  const choice = Math.floor(Math.random() * 3 + 1);
+  const choice = Math.floor(Math.random() * 3 + 1); // generate random number between 1-3
   if (choice === 1) {
     return "rock";
   }  else if (choice === 2) {
@@ -27,10 +27,30 @@ function getPlayerChoice () {
   } while (true);
 }
 
-// function playRound(playerSelectionText, computerSelection) {
-
-
-// }
+function playRound(playerSelection, computerSelection) {
+  if (playerSelection === computerSelection) {
+    return("Tie! Play again.")
+  } 
+  if (playerSelection === "rock") {
+    if (computerSelection === "scissors") {
+      return("You win. " + playerSelection + " beats " + computerSelection);
+    } else if (computerSelection === "paper") {
+      return("You lose. " + computerSelection + " beats " + playerSelection);
+    }
+  } else if (playerSelection === "paper") {
+    if (computerSelection === "rock") {
+      return("You win. " + playerSelection + " beats " + computerSelection);
+    } else if (computerSelection === "scissors") {
+      return("You lose. " + computerSelection + " beats " + playerSelection);
+    }
+  } else if (playerSelection === "scissors") {
+    if (computerSelection === "rock") {
+      return("You lose. " + computerSelection + " beats " + playerSelection);
+    } else if (computerSelection === "paper") {
+      return("You win. " + playerSelection + " beats " + computerSelection);
+    }
+  }
+} // end of playRound function
 
 
 /*
