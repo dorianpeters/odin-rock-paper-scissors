@@ -1,8 +1,6 @@
-const computerSelection = getComputerChoice();
-const playerSelection = getPlayerChoice();
-console.log ("computer: " + computerSelection)
-console.log("player: " + playerSelection)
-console.log(playRound(playerSelection, computerSelection));
+let playerWins = 0;
+let computerWins = 0;
+game();
 
 function getComputerChoice() {
   const choice = Math.floor(Math.random() * 3 + 1); // generate random number between 1-3
@@ -30,27 +28,49 @@ function getPlayerChoice () {
 function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
     return("Tie! Play again.")
-  } 
-  if (playerSelection === "rock") {
+  } else if (playerSelection === "rock") {
     if (computerSelection === "scissors") {
+      playerWins++;
       return("You win. " + playerSelection + " beats " + computerSelection);
     } else if (computerSelection === "paper") {
+      computerWins++;
       return("You lose. " + computerSelection + " beats " + playerSelection);
     }
   } else if (playerSelection === "paper") {
     if (computerSelection === "rock") {
+      playerWins++;
       return("You win. " + playerSelection + " beats " + computerSelection);
     } else if (computerSelection === "scissors") {
+      computerWins++;
       return("You lose. " + computerSelection + " beats " + playerSelection);
     }
   } else if (playerSelection === "scissors") {
     if (computerSelection === "rock") {
+      computerWins++;
       return("You lose. " + computerSelection + " beats " + playerSelection);
     } else if (computerSelection === "paper") {
+      playerWins++;
       return("You win. " + playerSelection + " beats " + computerSelection);
     }
-  }
+  } 
 } // end of playRound function
+
+function game() {
+  do {
+    const computerSelection = getComputerChoice();
+    const playerSelection = getPlayerChoice();
+    console.log ("computer: " + computerSelection) // debug
+    console.log("player: " + playerSelection)  // debug
+    console.log(playRound(playerSelection, computerSelection));
+  } while ((playerWins < 3) && (computerWins < 3));
+
+  if (playerWins > computerWins) {
+    console.log("You are the winner!")
+  }  else {
+    console.log("You are the loser.")
+  }
+  console.log("You won " + playerWins + " rounds. The computer won " + computerWins + " rounds.");
+}
 
 
 /*
@@ -77,7 +97,6 @@ function playRound(playerSelection, computerSelection) {
               if playerSelection = rock AND computerselection = scissors, answer = player wins
               (same thing with other combinations)
   Returns string that declares the winner. */
-
 
 /*
   # create function game() that keeps score and does a best of five
