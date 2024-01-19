@@ -22,14 +22,14 @@ function getPlayerChoice () {
     if ((answer === "rock") || (answer === "paper") || (answer === "scissors")) {
       return answer;
     } else {
-      console.log("You must enter rock, paper or scissors.")
+      console.log("You must enter rock, paper or scissors.");
     }
   } while (true);
 }
 
 function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
-    return("Tie! Play again.")
+    return("Tie! Play again.");
   } else if (playerSelection === "rock") {
     if (computerSelection === "scissors") {
       playerWins++;
@@ -55,57 +55,22 @@ function playRound(playerSelection, computerSelection) {
       return("You win. " + playerSelection + " beats " + computerSelection);
     }
   } 
-} // end of playRound function
+}
 
 function game() {
   do {
     const computerSelection = getComputerChoice();
     const playerSelection = getPlayerChoice();
-    console.log ("computer: " + computerSelection) // debug
-    console.log("player: " + playerSelection)  // debug
+    console.log ("computer: " + computerSelection);
+    console.log("player: " + playerSelection);
     console.log(playRound(playerSelection, computerSelection));
   } while ((playerWins < 3) && (computerWins < 3));
 
   if (playerWins > computerWins) {
-    console.log("You are the winner!")
+    console.log("You are the winner!");
   }  else {
-    console.log("You are the loser.")
+    console.log("You are the loser.");
   }
   console.log("You won " + playerWins + " rounds. The computer won " + computerWins + " rounds.");
 }
-
-
-/*
-# create function getComputerChoice
-  generate random number between 1-3
-    If 1 - "Rock", If 2-"Paper", If 3 - Scissors
-    Store computerChoice
-    Return computerChoice */
-/*
-# create function getPlayChoice
-    Prompt user to type choice
-    store choice in variable
-    lower case choice for comparison
-    if choice = rock, paper, or scissors
-      return choice
-    else
-      tell user, invalid choice
-      reprompt/start over
-
-# create function playRound
-  Take two string parametors - player selection and computer selection
-  Start with: if playerSelection = rock AND computerselection = rock, answer = tie
-              if playerSelection = rock AND computerselection = paper, answer = computer wins
-              if playerSelection = rock AND computerselection = scissors, answer = player wins
-              (same thing with other combinations)
-  Returns string that declares the winner. */
-
-/*
-  # create function game() that keeps score and does a best of five
-      create variables for playerScore and computerScore.
-      playRound
-      if player wins, increase score
-      if computer wins, increase score
-      Stop when playerScore or ComputerScore reach three.
-*/
   
