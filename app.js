@@ -58,13 +58,11 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-  do {
-    const computerSelection = getComputerChoice();
-    const playerSelection = getPlayerChoice();
-    console.log ("computer: " + computerSelection);
-    console.log("player: " + playerSelection);
-    console.log(playRound(playerSelection, computerSelection));
-  } while ((playerWins < 3) && (computerWins < 3));
+  const computerSelection = getComputerChoice();
+  const playerSelection = getPlayerChoice();
+  console.log ("computer: " + computerSelection);
+  console.log("player: " + playerSelection);
+  console.log(playRound(playerSelection, computerSelection));
 
   if (playerWins > computerWins) {
     console.log("You are the winner!");
