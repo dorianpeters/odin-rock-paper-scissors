@@ -15,13 +15,6 @@ function getComputerChoice() {
   }
 }
 
-function getPlayerChoice () {
-  let buttons = document.querySelector('#buttons');
-  buttons.addEventListener('click', (e) => {
-    return e.target.id;
-  });  
-}
-
 function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
     return("Tie! Play again.");
@@ -53,27 +46,30 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-  
-  const computerSelection = getComputerChoice();
-  const playerSelection = getPlayerChoice();
-  let outcome = playRound(playerSelection, computerSelection);
+    let buttons = document.querySelector('#buttons');
+    let msgDiv = document.querySelector("#message");
 
-  let msg = "";
-  msg += "computer: " + computerSelection + 
-  "\nplayer: " + playerSelection + "\n" + outcome;
-  let msgDiv = document.querySelector("#message");
-  msgDiv.textContent = msg;
-  let scoreDiv = document.querySelector("#score");
-  scoreDiv.textContent = "Running score:\n" + "Computer: " + computerWins +
-    "  Player: " + playerWins;
+    buttons.addEventListener('click', (event) => {
+      msgDiv.textContent = "";
+      let playerSelection = event.target.id;
+      let computerSelection = getComputerChoice();
+      let outcome = playRound(playerSelection, computerSelection);
+      msgDiv.textContent = "You selected: " + playerSelection + 
+      "  Computer selected: " + computerSelection + 
+      "\n" + outcome;
 
-  if ((playerWins >= 5) || (computerWins >= 5)) {
-    finalResultDiv = document.querySelector("#finalResult");
-    if (playerWins > computerWins) {
-      finalResultDiv.textContent = "Final result: You are the winner!";
-    }  else {
-      finalResultDiv.textContent = "Final result: You are the loser.";
-    }
-  }
+      let scoreDiv = document.querySelector("#score");
+      scoreDiv.textContent = "Running score:\n" + "Computer: " + computerWins +
+        "  Player: " + playerWins;
+
+      if ((playerWins >= 5) || (computerWins >= 5)) {
+        finalResultDiv = document.querySelector("#finalResult");
+        if (playerWins > computerWins) {
+          finalResultDiv.textContent = "Final result: You are the winner!";
+        }  else {
+          finalResultDiv.textContent = "Final result: You are the loser.";
+        }
+      }
+    });  
 } // end of game
   
