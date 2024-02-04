@@ -16,15 +16,10 @@ function getComputerChoice() {
 }
 
 function getPlayerChoice () {
-  do {
-    const userAnswer = prompt("Choose rock, paper, or scissors: ");
-    const answer = userAnswer.toLowerCase();
-    if ((answer === "rock") || (answer === "paper") || (answer === "scissors")) {
-      return answer;
-    } else {
-      console.log("You must enter rock, paper or scissors.");
-    }
-  } while (true);
+  let buttons = document.querySelector('#buttons');
+  buttons.addEventListener('click', (e) => {
+    return e.target.id;
+  });  
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -58,17 +53,27 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
+  
   const computerSelection = getComputerChoice();
   const playerSelection = getPlayerChoice();
-  console.log ("computer: " + computerSelection);
-  console.log("player: " + playerSelection);
-  console.log(playRound(playerSelection, computerSelection));
+  let outcome = playRound(playerSelection, computerSelection);
 
-  if (playerWins > computerWins) {
-    console.log("You are the winner!");
-  }  else {
-    console.log("You are the loser.");
+  let msg = "";
+  msg += "computer: " + computerSelection + 
+  "\nplayer: " + playerSelection + "\n" + outcome;
+  let msgDiv = document.querySelector("#message");
+  msgDiv.textContent = msg;
+  let scoreDiv = document.querySelector("#score");
+  scoreDiv.textContent = "Running score:\n" + "Computer: " + computerWins +
+    "  Player: " + playerWins;
+
+  if ((playerWins >= 5) || (computerWins >= 5)) {
+    finalResultDiv = document.querySelector("#finalResult");
+    if (playerWins > computerWins) {
+      finalResultDiv.textContent = "Final result: You are the winner!";
+    }  else {
+      finalResultDiv.textContent = "Final result: You are the loser.";
+    }
   }
-  console.log("You won " + playerWins + " rounds. The computer won " + computerWins + " rounds.");
-}
+} // end of game
   
